@@ -9,11 +9,11 @@ namespace FastRoute;
  * @return Dispatcher
  */
 function simpleDispatcher(callable $routeDefinitionCallback, array $options = []) {
-    $options += [
+    $options += array(
         'routeParser' => 'FastRoute\\RouteParser\\Std',
         'dataGenerator' => 'FastRoute\\DataGenerator\\GroupCountBased',
         'dispatcher' => 'FastRoute\\Dispatcher\\GroupCountBased',
-    ];
+    );
 
     $routeCollector = new RouteCollector(
         new $options['routeParser'], new $options['dataGenerator']
@@ -30,12 +30,12 @@ function simpleDispatcher(callable $routeDefinitionCallback, array $options = []
  * @return Dispatcher
  */
 function cachedDispatcher(callable $routeDefinitionCallback, array $options = []) {
-    $options += [
+    $options += array(
         'routeParser' => 'FastRoute\\RouteParser\\Std',
         'dataGenerator' => 'FastRoute\\DataGenerator\\GroupCountBased',
         'dispatcher' => 'FastRoute\\Dispatcher\\GroupCountBased',
         'cacheDisabled' => false,
-    ];
+    );
 
     if (!isset($options['cacheFile'])) {
         throw new \LogicException('Must specify "cacheFile" option');
